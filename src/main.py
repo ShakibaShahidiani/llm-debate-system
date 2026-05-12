@@ -2,7 +2,8 @@ from dotenv import load_dotenv
 import os
 import litellm
 from litellm import completion
-
+from database import save_debate
+import time
 
 # Load API keys from .env file
 load_dotenv()
@@ -67,6 +68,7 @@ def debate(question, models, persona, num_rounds =3):
 
         for i, (model, persona) in enumerate(zip(models, personas)):
             response = call_llm(model, persona, conversation_history)
+            time.sleep(2)
 
             print(f"\n🤖 Agent {i+1} ({model}):")
             print(response)
@@ -85,6 +87,14 @@ def debate(question, models, persona, num_rounds =3):
     print("\n final answer:\n")
     final_answer = synthesize(conversation_history)
     print(final_answer)
+
+    save_debate(
+    question=question,
+    models=models,
+    personas=personas,
+    num_rounds=round_num,
+    final_answer=final_answer
+    )
 
     return conversation_history, final_answer
 
