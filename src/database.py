@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime
 from sqlalchemy.orm import sessionmaker, declarative_base
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 from dotenv import load_dotenv
 
@@ -21,8 +21,7 @@ class Debate(Base):
     personas = Column(Text, nullable=False)
     num_rounds = Column(Integer, nullable=False)
     final_answer = Column(Text, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 def init_db(): #Run this once
     Base.metadata.create_all(engine)
     print("Database tables created successfully!")
