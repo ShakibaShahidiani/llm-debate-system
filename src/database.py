@@ -6,8 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = "postgresql://shakiba@localhost/llm_debate_system"
-
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://shakiba@localhost/llm_debate_system")
 engine = create_engine(DATABASE_URL)
 Base = declarative_base()
 Session = sessionmaker(bind=engine)

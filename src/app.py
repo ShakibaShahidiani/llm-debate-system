@@ -6,7 +6,8 @@ sys.path.append(os.path.dirname(__file__))
 from main import debate
 from database import get_all_debates
 from datetime import timedelta
-
+from database import get_all_debates, init_db
+init_db()
 st.set_page_config(
     page_title="LLM Debate System",
     page_icon="🤖",
