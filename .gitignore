@@ -1,5 +1,16 @@
+# Python
 .env
 .venv
 __pycache__
 *.pyc
+
+# Mac
 .DS_Store
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+crash.log
+override.tf
