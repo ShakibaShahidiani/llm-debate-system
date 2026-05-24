@@ -7,6 +7,10 @@ resource "aws_ssm_parameter" "groq_api_key" {
   tags = {
     Name = "${var.project_name}-groq-api-key"
   }
+  
+  lifecycle {
+    ignore_changes = [value]
+  }
 }
 
 resource "aws_ssm_parameter" "database_url" {
@@ -18,5 +22,9 @@ resource "aws_ssm_parameter" "database_url" {
   tags = {
     Name = "${var.project_name}-database-url"
   }
+  lifecycle {
+    ignore_changes = [value]
+  }
+
 }
 
