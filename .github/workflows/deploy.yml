@@ -34,7 +34,7 @@ jobs:
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids "${{ steps.get-instance.outputs.instance_id }}" \
             --document-name "AWS-RunShellScript" \
-            --parameters 'commands=["export HOME=/root && cd /home/ubuntu/llm-debate-system && git config --global --add safe.directory /home/ubuntu/llm-debate-system && git pull origin main && docker compose -f docker-compose.prod.yml down && docker compose -f docker-compose.prod.yml up --build -d"]' \
+            --parameters 'commands=["export HOME=/root && cd /home/ubuntu/llm-debate-system && git config --global --add safe.directory /home/ubuntu/llm-debate-system && git pull origin main && docker-compose -f docker-compose.prod.yml down && docker-compose -f docker-compose.prod.yml up --build -d"]' \
             --query "Command.CommandId" \
             --output text)
 
