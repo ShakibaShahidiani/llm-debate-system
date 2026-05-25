@@ -17,3 +17,7 @@ output "ssm_database_url_path" {
   description = "SSM path for database URL"
   value       = aws_ssm_parameter.database_url.name
 }
+
+output "github_actions_role_arn" {
+  value = aws_iam_role.github_actions_deploy.arn
+}
